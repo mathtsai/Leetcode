@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+//segment tree practice!
+
+#define MAXN 500001
+int arr[MAXN];
+
+struct segment_tree{
+    int val; //value of the node
+}seg[MAXN << 2];
+
+void build(int L, int R, int id) //build segment tree
+{
+    if(L==R)
+    {
+        seg[id].val = arr[L];
+        return;
+    }
+
+    int m = (L+R) >> 1;
+    build(L, m, id<<1); //left
+    build(m+1, R, id<<1 | 1); //right
+    seg[id].val = max(seg[id<<1].val, seg[id<<1 | 1].val);
+}
+
+int query(int l, int r, int L, int R, int id) //query interval value
+{
+    if(l<=L && r>=R)
+        return seg[id].val;
+
+    int m = (L+R) >> 1;
+    int ans = INT_MIN;
+    if(l<=m)
+        ans = max(ans, query(l,r,L,m, id<<1));
+    if(r>m)
+        ans = max(ans, query(l,r,m+1,R, id<<1 | 1));
+    return ans;
+}
+
+int modify() //modify values, no lazy propagation
+{
+
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int n;
+    cin >> n;
+    for(int i=0; i<n; i++)
+        cin >> arr[i];
+
+    build(0,n-1,1);
+    int m;
+    cin >> m;
+    while(m--)
+    {
+        int a,b;
+        cin >> a >> b;
+        cout << query(min(a,b)-1, max(a,b)-1, 0, n-1, 1) << '\n';
+    }
