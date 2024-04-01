@@ -23,7 +23,7 @@ protected:
 class Dog: public Animal
 {
 public:
-    Dog(int age) : Animal(age)
+    Dog(int age = 0) : Animal(age)
     {
 
     }
@@ -36,7 +36,7 @@ public:
 class Cat: public Animal
 {
 public:
-    Cat(int age) : Animal(age)
+    Cat(int age = 0) : Animal(age)
     {
 
     }
