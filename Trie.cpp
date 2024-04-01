@@ -2,9 +2,9 @@
 using namespace std;
 
 class Node{
-public:
     Node* ch[26];
     bool isWord;
+public:
     Node(){
         for(int i=0; i<26; i++) ch[i] = nullptr;
         isWord = false;
@@ -19,6 +19,7 @@ public:
             }
         }
     }
+    friend class Trie;
 };
 
 class Trie{
