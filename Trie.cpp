@@ -10,14 +10,8 @@ public:
         isWord = false;
     }
     ~Node(){
-        for(int i=0; i<26; i++)
-        {
-            if(ch[i])
-            {
-                delete ch[i];
-                cout << "delete child " << (char)('a'+i) << '\n';
-            }
-        }
+        delete[] ch;
+        cout << "destroy ch\n";
     }
     friend class Trie;
 };
