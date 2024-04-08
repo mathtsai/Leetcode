@@ -2,27 +2,27 @@
 using namespace std;
 
 class DSU{
-    int p[100001], sz[100001];
+    vector<int> p,sz;
 
 public:
     DSU(int n)
     {
+        p.resize(n);
+        sz.resize(n);
         for(int i=0; i<n; i++)
         {
             p[i] = i;
             sz[i] = 1;
         }
     }
-    ~DSU()
-    {
-        delete []p;
-        delete []sz;
-    }
+    //~DSU() by default
+
     int Find(int x)
     {
         //path compression
         return (x == p[x]) ? x : p[x] = Find(p[x]);
     }
+
     void Union(int x, int y)
     {
         int px = Find(x);
@@ -46,3 +46,4 @@ int main()
     for(int i=0; i<5; i++)
         cout << d.Find(i) << '\n';
 }
+
