@@ -1,6 +1,7 @@
 class Solution {
 public:
     #define N 50001
+    #define ll long long
     vector<bool> mark;
     vector<pair<int,int>> ancestor[N];
     bool vis[N];
@@ -29,7 +30,7 @@ public:
         }
 
         //Dijkstra
-        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> pq;
+        priority_queue<pair<ll,int>, vector<pair<ll,int>>, greater<>> pq;
 
         bool vis[n];
         long long dis[n];
